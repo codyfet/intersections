@@ -1,0 +1,159 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,700,900);
+
+body {
+    background-color: #f2f2f2;
+    color: #555;
+    font-family: "Lato" !important;
+    color: rgba(0,0,0,0.54);
+}
+
+.appWrapper {
+    margin: 0 10%;
+    background: white;
+    min-width: 800px;
+}
+
+.appWrapper .headerLabel {
+    font-size: 30px;
+    padding: 20px 40px;
+    text-align: center;
+}
+
+/* SEARCH PANEL */
+
+.searchWrapper {
+    text-align: center;
+    padding: 25px 0;
+    background: #538774;
+    position: relative;
+}
+
+.searchWrapper .resetButton {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    color: #cccccc;
+}
+
+.searchWrapper .react-autosuggest__input {
+    width: 600px;
+    padding: 5px 10px;
+    height: 34px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.searchWrapper #react-autowhatever-1 {
+    background: white;
+    height: auto;
+    width: 600px;
+    margin: 0 auto;
+    position: absolute;
+    left: -50%;
+    right: -50%;
+    z-index: 1000;
+}
+
+.searchWrapper #react-autowhatever-1 ul {
+    padding: 0;
+}
+
+/* li */
+.searchWrapper #react-autowhatever-1 .react-autosuggest__suggestion {
+    list-style-type: none;
+    cursor: pointer;
+}
+/* li focused */
+.searchWrapper #react-autowhatever-1 .react-autosuggest__suggestion--focused {
+    background: #D4FFFD;
+}
+
+/* ACTORS PANEL */
+
+.actorsListWrapper {
+    width: 40%;
+    background: #4a5855;
+    float: left;
+}
+
+.actorsListWrapper ul {
+    margin: 0;
+    padding: 10px;
+    min-height: 400px;
+    padding: 10px 10px 5px 10px;
+}
+
+.actorsListWrapper ul li {
+    list-style-type: none;
+    height: 152px;
+    background: white;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.actorAvatar {
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.actorLabel {
+    float: left;
+    font-size: 30px;
+    padding-left: 20px;
+    line-height: 149px;
+}
+
+.remove {
+    position: absolute;
+    right: 10px;
+    top: 63px;
+    cursor: pointer;
+}
+
+.remove:hover {
+    color: #949494;
+}
+
+/* MOVIES PANEL */
+
+.moviesListWrapper {
+    width: 60%;
+    float: left;
+    background: white;
+}
+
+.moviesListWrapper ul {
+    background: #68b568;
+    padding: 10px;
+    margin: 0;
+    min-height: 400px;
+}
+
+.moviesListWrapper ul li {
+    list-style-type: none;
+    height: 165px;
+    border: 1px solid #2c2929;
+    border-bottom: none;
+    background: white;
+}
+
+.moviesListWrapper ul li .movieAvatar {
+    padding: 10px;
+    float: left;
+}
+
+.moviesListWrapper ul li .movieLabel {
+    font-size: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 10px 0 10px 10px;
+}
+
+.actorsGallery .actorsGalleryItem {
+    padding: 0 0 15px 10px;
+    height: 100px;
+}
