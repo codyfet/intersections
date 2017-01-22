@@ -7,7 +7,7 @@ const superagent = superagentCache();
 
 import './App.css';
 
-let POSTERS_ACTORS_MAP = {}
+let POSTERS_ACTORS_MAP = {};
 
 /**
  *  App component
@@ -21,7 +21,7 @@ class App extends Component {
         this.state = {
             actors : [],
             movies: []
-        }
+        };
     }
 
     handleAddActor(newActor){
@@ -97,7 +97,7 @@ class App extends Component {
         this.setState({
             movies:[],
             actors:[]
-        })
+        });
     }
 
     getActorMovies(idActor){
@@ -135,7 +135,7 @@ class App extends Component {
                     if( !movieExists && moviesCast[i].media_type === 'movie' ) {
                         movies.push({
                             [moviesCast[i].id] : {
-                                'poster_path' : (moviesCast[i].poster_path!==null) ? 'http://image.tmdb.org/t/p/w92' + moviesCast[i].poster_path : "/img/reel2.png",
+                                'poster_path' : (moviesCast[i].poster_path!==null) ? 'http://image.tmdb.org/t/p/w92' + moviesCast[i].poster_path : '/img/reel2.png',
                                 'release_date' : moviesCast[i].release_date,
                                 'title' : moviesCast[i].title,
                                 'actorsArray' : [actorId]
@@ -180,7 +180,7 @@ class App extends Component {
                 <MoviesList movies={ this.state.movies } />
 
             </div>
-        )
+        );
     }
 }
 
@@ -201,11 +201,11 @@ class Search extends Component {
 
     }
 
-    onChange = (event, { newValue }) => {
+    onChange(event, { newValue }) {
        this.setState({
            value: newValue
        });
-    };
+    }
 
     getSuggestionValue(suggestion) {
         return suggestion.name;
@@ -215,7 +215,7 @@ class Search extends Component {
         return <div className={suggestion.id}>{suggestion.name}</div>;
     }
 
-    onSuggestionsFetchRequested = ({ value }) => {
+    onSuggestionsFetchRequested(value) {
 
         if (value.length < 3) {
             return false;
@@ -226,7 +226,7 @@ class Search extends Component {
         superagent
             .get('http://api.themoviedb.org/3/search/person?api_key=37662c76ffc19e5cd1b95f37d77155fc&query=' + value)
             .then(function (response) {
-                console.log("Response in autocomplete functionality");
+                console.log('Response in autocomplete functionality');
                 console.log(response);
 
                 var results = response.body.results;
@@ -238,14 +238,14 @@ class Search extends Component {
                 console.log(error);
             });
 
-    };
+    }
 
     // Autosuggest will call this function every time you need to clear suggestions. 
-    onSuggestionsClearRequested = () => {
+    onSuggestionsClearRequested(){
        this.setState({
            suggestions: []
        });
-    };
+    }
 
     clearSeacrhInput(){
         this.state = {
@@ -253,8 +253,8 @@ class Search extends Component {
         };
     }
 
-    onSuggestionSelected = (e) => {
-        const id = e.target.closest("div.searchWrapper").getElementsByClassName("react-autosuggest__suggestion--focused")[0].children[0].className;
+    onSuggestionSelected(e) {
+        const id = e.target.closest('div.searchWrapper').getElementsByClassName('react-autosuggest__suggestion--focused')[0].children[0].className;
 
         var actorObject = this.state.suggestions.filter(function( obj ) {
             return obj.id.toString() === id;
@@ -278,7 +278,7 @@ class Search extends Component {
         const inputProps = {
             placeholder: 'Enter name and press enter',
             value,
-            onChange: this.onChange
+            onChange: this.onChange.bind(this)
         };
 
         return (
@@ -288,12 +288,12 @@ class Search extends Component {
 
                 <Autosuggest
                     suggestions={suggestions}
-                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(this)}
+                    onSuggestionsClearRequested={this.onSuggestionsClearRequested.bind(this)}
                     getSuggestionValue={this.getSuggestionValue}
                     renderSuggestion={this.renderSuggestion}
                     inputProps={inputProps}
-                    onSuggestionSelected={this.onSuggestionSelected}
+                    onSuggestionSelected={this.onSuggestionSelected.bind(this)}
                 />
 
             </div>
@@ -318,8 +318,8 @@ class ActorsList extends Component {
 
     removeHandler(e){
 
-        const liEl = e.target.closest("li");
-        const id = liEl.className.substr(liEl.className.indexOf("_")+1, liEl.className.length);
+        const liEl = e.target.closest('li');
+        const id = liEl.className.substr(liEl.className.indexOf('_')+1, liEl.className.length);
 
         this.props.removeActorFunc(id);
     }
@@ -332,7 +332,7 @@ class ActorsList extends Component {
         return (
             <div className='actorsListWrapper'>
                 <ul>
-                    {isEmptyList ? "" : this.props.actors.map(function(item) {
+                    {isEmptyList ? '' : this.props.actors.map(function(item) {
                         return <Actor actor={item} key={guid()} removeHandler={removeHandlerFunc} />;
                     })}
                 </ul>
@@ -350,7 +350,7 @@ class Actor extends Component {
 
     render() {
 
-        const id_ = "id_" + this.props.actor.id;
+        const id_ = 'id_' + this.props.actor.id;
 
         return (
             <li className={id_} >
@@ -361,7 +361,7 @@ class Actor extends Component {
         );
     }
 
-};
+}
 
 /**
  *  MoviesList component
@@ -376,7 +376,7 @@ class MoviesList extends Component {
         return (
             <div className='moviesListWrapper'>
                 <ul>
-                    {isEmptyList ? "" : this.props.movies.map(function(item) {
+                    {isEmptyList ? '' : this.props.movies.map(function(item) {
                         return <Movie movie={item} key={guid()} />;
                     })}
                 </ul>
@@ -395,23 +395,23 @@ class Movie extends Component {
     render() {
 
         const idMovie = Object.keys(this.props.movie)[0];
-        const id_ = "id_" + idMovie;
+        const id_ = 'id_' + idMovie;
 
         return (
             <li className={id_}>
                 <img className='movieAvatar' alt='Аватар актера' src={this.props.movie[idMovie].poster_path}/>
-                <div className='movieLabel'>{this.props.movie[idMovie].title ? this.props.movie[idMovie].title : "title missed, sorry"}</div>
+                <div className='movieLabel'>{this.props.movie[idMovie].title ? this.props.movie[idMovie].title : 'title missed, sorry'}</div>
                 <div className='actorsGallery'>
                     {
                         this.props.movie[idMovie].actorsArray.map(function(item){
-                            return <img key={ guid() } className='actorsGalleryItem' alt='Аватар актера' src={POSTERS_ACTORS_MAP[item]} />
+                            return <img key={ guid() } className='actorsGalleryItem' alt='Аватар актера' src={POSTERS_ACTORS_MAP[item]} />;
                         })
                     }
                 </div>
             </li>
         );
     }
-};
+}
 
 /**
  *  Generates unique value (used for keys)
