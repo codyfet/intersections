@@ -215,16 +215,16 @@ class Search extends Component {
         return <div className={suggestion.id}>{suggestion.name}</div>;
     }
 
-    onSuggestionsFetchRequested(value) {
+    onSuggestionsFetchRequested(data) {
 
-        if (value.length < 3) {
+        if (data.value.length < 3) {
             return false;
         }
 
         var that = this;
 
         superagent
-            .get('http://api.themoviedb.org/3/search/person?api_key=37662c76ffc19e5cd1b95f37d77155fc&query=' + value)
+            .get('http://api.themoviedb.org/3/search/person?api_key=37662c76ffc19e5cd1b95f37d77155fc&query=' + data.value)
             .then(function (response) {
                 console.log('Response in autocomplete functionality');
                 console.log(response);
